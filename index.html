@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="3-body ternary core inside 12-body harmonic lattice with binary/4 quadrant routing.">
+<meta name="theme-color" content="#05000a">
+<title>3 Body / 12 Body // Binary-4 Harmonic Lattice</title>
+<style>
+:root{--bg:#030008;--ink:#f8f2ff;--muted:#ad9bc8;--line:rgba(215,178,255,.24);--violet:#9b5cff;--pink:#ff38e8;--cyan:#57e7ff;--green:#77ffc8;--gold:#ffd166}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 72% 18%,rgba(155,92,255,.24),transparent 28rem),radial-gradient(circle at 20% 76%,rgba(255,56,232,.13),transparent 24rem),linear-gradient(135deg,#020105,#090013 52%,#000);overflow:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 0 96%,rgba(155,92,255,.07) 97% 100%),linear-gradient(0deg,transparent 0 96%,rgba(155,92,255,.05) 97% 100%);background-size:32px 32px;mask-image:radial-gradient(circle,black,transparent 82%)}
+.app{height:100vh;display:grid;grid-template-columns:minmax(340px,.86fr) minmax(480px,1.14fr);gap:clamp(18px,3vw,46px);padding:clamp(18px,3vw,46px);position:relative}
+.panel{border:1px solid var(--line);border-radius:30px;background:linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.025));box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 30px 90px rgba(0,0,0,.35);backdrop-filter:blur(18px);overflow:hidden}
+.left{padding:clamp(22px,3vw,42px);display:flex;flex-direction:column;justify-content:space-between}
+.badge{display:inline-flex;align-items:center;gap:10px;width:max-content;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--muted);font-size:12px;letter-spacing:.16em;text-transform:uppercase}.badge i{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan),0 0 40px var(--violet);animation:pulse 2.2s infinite ease-in-out}
+h1{margin:24px 0 16px;font-size:clamp(44px,7.6vw,104px);line-height:.84;letter-spacing:-.085em;text-transform:uppercase}.grad{background:linear-gradient(105deg,#fff,#eadbff 24%,var(--violet) 50%,var(--pink) 76%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(255,56,232,.22))}
+p{color:#cbbfe2;line-height:1.65;font-size:clamp(15px,1.45vw,18px);margin:0;max-width:65ch}.code{margin-top:22px;border:1px solid rgba(215,178,255,.16);border-radius:22px;background:rgba(0,0,0,.3);padding:14px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#eadbff;font-size:13px;line-height:1.6}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}.metric{border:1px solid rgba(215,178,255,.14);border-radius:18px;background:rgba(255,255,255,.035);padding:12px}.metric span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.12em}.metric b{display:block;margin-top:6px;font-size:20px}
+.stage{position:relative;display:grid;grid-template-rows:1fr 180px;min-height:0}.field{position:relative;display:grid;place-items:center;min-height:0}.beam{position:absolute;left:-12%;top:50%;width:96%;height:8px;background:linear-gradient(90deg,transparent,rgba(155,92,255,.18),rgba(255,255,255,.92),rgba(87,231,255,.5),transparent);filter:blur(5px);transform:rotate(-8deg);animation:beam 5s ease-in-out infinite}
+canvas{display:block}.mainCanvas{width:100%;height:100%}.wavePanel{border-top:1px solid var(--line);background:rgba(0,0,0,.24);padding:14px}.waveCanvas{width:100%;height:100%;border:1px solid rgba(215,178,255,.15);border-radius:20px;background:#05000a}
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}.pill{border:1px solid rgba(215,178,255,.15);border-radius:999px;padding:8px 10px;text-align:center;color:#decfff;font-size:12px;background:rgba(255,255,255,.035)}
+@keyframes pulse{50%{transform:scale(1.85);opacity:.55}}@keyframes beam{50%{opacity:.42;transform:rotate(-8deg) translateX(22px)}}
+@media(max-width:940px){body{overflow:auto}.app{height:auto;min-height:100vh;grid-template-columns:1fr}.stage{min-height:780px}.legend{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<main class="app">
+<section class="left panel">
+  <div>
+    <div class="badge"><i></i> Ternary Core // 12-Body Container</div>
+    <h1><span class="grad">3 Body</span><br>inside 12</h1>
+    <p>Balanced ternary inner body <b>−1 / 0 / +1</b> rotates inside a 12-sector harmonic lattice. The outer body is routed by <b>binary / 4</b>: four quadrants, each with three ternary positions.</p>
+    <div class="code">MODEL :: (12 sectors) = (4 binary quadrants × 3 ternary nodes)<br>CORE  :: −1 / 0 / +1<br>WAVE  :: 27 00 −27 00 REPEAT<br>ID    :: center observer / phase anchor<br>LOCK  :: sector × quadrant × ternary coherence</div>
+    <div class="legend">
+      <div class="pill">Q0: 00</div><div class="pill">Q1: 01</div><div class="pill">Q2: 10</div><div class="pill">Q3: 11</div>
+    </div>
+  </div>
+  <div class="metrics">
+    <div class="metric"><span>Sector</span><b id="sector">0</b></div>
+    <div class="metric"><span>Quadrant</span><b id="quadrant">00</b></div>
+    <div class="metric"><span>Ternary</span><b id="ternary">0</b></div>
+    <div class="metric"><span>Amplitude</span><b id="amp">27</b></div>
+    <div class="metric"><span>Phase</span><b id="phase">0.000</b></div>
+    <div class="metric"><span>Coherence</span><b id="coherence">1.000</b></div>
+  </div>
+</section>
+
+<section class="stage panel">
+  <div class="field">
+    <div class="beam"></div>
+    <canvas class="mainCanvas" id="main" width="900" height="720" aria-label="3 body inside 12 body binary 4 lattice"></canvas>
+  </div>
+  <div class="wavePanel">
+    <canvas class="waveCanvas" id="wave" width="1200" height="220" aria-label="standing wave 27 00 -27 00 repeat"></canvas>
+  </div>
+</section>
+</main>
+
+<script>
+const main=document.getElementById("main"),m=main.getContext("2d");
+const wave=document.getElementById("wave"),wctx=wave.getContext("2d");
+const sectorEl=document.getElementById("sector"),quadEl=document.getElementById("quadrant"),ternEl=document.getElementById("ternary"),ampEl=document.getElementById("amp"),phaseEl=document.getElementById("phase"),cohEl=document.getElementById("coherence");
+const seq=[27,0,0,-27,0,0],ternary=[-1,0,1],quadBits=["00","01","10","11"];
+let t=0,mem=.5;
+function drawMain(){
+  const W=main.width,H=main.height,cx=W/2,cy=H/2,R=Math.min(W,H)*.37;
+  const phase=(t%36000)/36000,theta=phase*Math.PI*2;
+  const sector=Math.floor(phase*12)%12,quad=Math.floor(sector/3),tri=sector%3;
+  const amp=seq[Math.floor(t/20)%seq.length],triState=ternary[tri];
+  m.clearRect(0,0,W,H);
+  const bg=m.createRadialGradient(cx,cy,10,cx,cy,R*1.45);bg.addColorStop(0,"rgba(255,56,232,.28)");bg.addColorStop(.32,"rgba(155,92,255,.12)");bg.addColorStop(1,"rgba(0,0,0,0)");m.fillStyle=bg;m.fillRect(0,0,W,H);
+  m.strokeStyle="rgba(215,178,255,.13)";m.lineWidth=1;
+  for(let i=0;i<12;i++){const a=i*Math.PI*2/12-Math.PI/2;m.beginPath();m.moveTo(cx,cy);m.lineTo(cx+Math.cos(a)*R*1.12,cy+Math.sin(a)*R*1.12);m.stroke()}
+  for(let q=0;q<4;q++){const a0=q*Math.PI/2-Math.PI/2;m.beginPath();m.moveTo(cx,cy);m.arc(cx,cy,R*1.1,a0,a0+Math.PI/2);m.closePath();m.fillStyle=q===quad?"rgba(255,56,232,.12)":"rgba(255,255,255,.018)";m.fill()}
+  for(let r=1;r<=4;r++){m.beginPath();m.arc(cx,cy,R*r/4,0,Math.PI*2);m.strokeStyle=r===4?"rgba(255,255,255,.28)":"rgba(215,178,255,.12)";m.stroke()}
+  for(let i=0;i<12;i++){
+    const a=i*Math.PI*2/12-Math.PI/2,active=i===sector,localTri=i%3-1;
+    const rr=R*(.72+.12*Math.sin(theta+i));
+    const x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr;
+    m.beginPath();m.arc(x,y,active?15:9,0,Math.PI*2);
+    m.fillStyle=active?"rgba(87,231,255,.95)":localTri<0?"rgba(255,56,232,.68)":localTri>0?"rgba(119,255,200,.68)":"rgba(255,255,255,.45)";
+    m.shadowColor=m.fillStyle;m.shadowBlur=active?28:10;m.fill();m.shadowBlur=0;
+    m.fillStyle="rgba(255,255,255,.75)";m.font="13px ui-monospace";m.textAlign="center";m.fillText(i,cx+Math.cos(a)*R*1.2,cy+Math.sin(a)*R*1.2+4);
+  }
+  for(let i=0;i<3;i++){
+    const a=theta+i*Math.PI*2/3-Math.PI/2;
+    const r=R*.28+(triState*R*.035);
+    const x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;
+    m.beginPath();m.arc(x,y,18,0,Math.PI*2);
+    m.fillStyle=i===tri?"rgba(255,209,102,.95)":i===0?"rgba(255,56,232,.72)":i===1?"rgba(255,255,255,.62)":"rgba(119,255,200,.72)";
+    m.shadowColor=m.fillStyle;m.shadowBlur=26;m.fill();m.shadowBlur=0;
+  }
+  m.beginPath();m.arc(cx,cy,40,0,Math.PI*2);m.fillStyle="rgba(5,0,12,.85)";m.fill();m.strokeStyle="rgba(255,255,255,.34)";m.lineWidth=2;m.stroke();
+  m.fillStyle="white";m.font="bold 34px system-ui";m.textAlign="center";m.fillText("ID",cx,cy+12);
+  const mean=(sector/12+quad/4+(tri+1)/3+Math.abs(amp)/27)/4;mem=mem*.996+mean*.004;
+  const coh=Math.max(0,Math.min(1,1-Math.abs(mean-mem)*.8));
+  sectorEl.textContent=sector;quadEl.textContent=quadBits[quad];ternEl.textContent=triState>0?"+1":triState<0?"−1":"0";ampEl.textContent=Math.abs(amp);phaseEl.textContent=phase.toFixed(3);cohEl.textContent=coh.toFixed(3);
+}
+function drawWave(){
+  const W=wave.width,H=wave.height,idx=Math.floor(t/20)%seq.length,a=seq[idx],p=t*.036;
+  const g=wctx.createLinearGradient(0,0,W,H);g.addColorStop(0,"#05000a");g.addColorStop(.5,"#1b002b");g.addColorStop(1,"#000");wctx.fillStyle=g;wctx.fillRect(0,0,W,H);
+  wctx.strokeStyle="rgba(215,178,255,.14)";wctx.lineWidth=1;
+  for(let i=0;i<=W;i+=40){wctx.beginPath();wctx.moveTo(i,0);wctx.lineTo(i,H);wctx.stroke()}
+  wctx.strokeStyle="rgba(255,255,255,.18)";wctx.beginPath();wctx.moveTo(0,H/2);wctx.lineTo(W,H/2);wctx.stroke();
+  for(let layer=0;layer<3;layer++){
+    wctx.beginPath();
+    for(let i=0;i<W;i++){
+      const n=i/W,e=Math.sin(Math.PI*n),cw=Math.sin(n*Math.PI*8+p+layer*.7),mw=Math.sin(n*Math.PI*8-p-layer*.7);
+      const y=H/2-(cw+mw)*e*(a/27)*(38-layer*9);
+      i?wctx.lineTo(i,y):wctx.moveTo(i,y);
+    }
+    wctx.strokeStyle=layer===0?"rgba(255,56,232,.96)":layer===1?"rgba(155,92,255,.65)":"rgba(87,231,255,.48)";
+    wctx.lineWidth=layer===0?4:2;wctx.shadowColor=wctx.strokeStyle;wctx.shadowBlur=18;wctx.stroke();
+  }
+  wctx.shadowBlur=0;
+}
+function frame(){drawMain();drawWave();t++;requestAnimationFrame(frame)}
+frame();
+</script>
+</body>
+</html>

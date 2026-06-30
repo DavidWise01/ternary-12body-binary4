@@ -1,0 +1,30 @@
+{
+  "name": "3 Body inside 12 Body // Binary-4 Harmonic Lattice",
+  "version": "1.0.0",
+  "entry": "index.html",
+  "model": {
+    "outer_body": 12,
+    "quadrants": 4,
+    "quadrant_bits": [
+      "00",
+      "01",
+      "10",
+      "11"
+    ],
+    "inner_body": 3,
+    "ternary_states": [
+      -1,
+      0,
+      1
+    ],
+    "standing_wave": [
+      27,
+      0,
+      0,
+      -27,
+      0,
+      0
+    ]
+  },
+  "dependencies": []
+}
