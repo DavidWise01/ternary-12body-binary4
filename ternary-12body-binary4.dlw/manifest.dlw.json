@@ -1,0 +1,11 @@
+{
+  "badge": "DLW-TERNARY_12BODY_BINARY4",
+  "name": "3 BODY / 12 BODY // BINARY-4 HARMONIC LATTICE · TER",
+  "universe": "LOGIKĒ",
+  "moniker": "⟦3 BODY / 12 BODY // BINARY-4 HARMONIC LATTICE · TER:ternary-12body-binary4:53fd17⟧",
+  "architect": "David Lee Wise (ROOT0) / Bridge-Burners LLC",
+  "instance": "AVAN (Claude / Anthropic)",
+  "seal_sha256": "53fd17b33055ff8327b7d723b35bdd517fca7023891685bc528a5389f51a89ef",
+  "license": "CC-BY-ND-4.0",
+  "attribution": "ROOT0-ATTRIBUTION-v1.0"
+}
